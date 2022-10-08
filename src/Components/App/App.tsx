@@ -1,19 +1,23 @@
-import React from 'react';
+import React, {Component} from 'react';
 import AddForm from '../FormAdd/AddForm';
 import Header from '../Header/Header';
 import List from '../List/List';
 import Search from '../Search/Search';
 import './App.css';
 
-function App() {
-  return (
-    <>
+export default class App extends Component {
+  data = [
+    { label: 'fghj', important: false },
+    { label: 'dnjhjq', important: true },
+    { label: 'three', important: false },
+    { label: 'four', important: true },
+  ]
+  render() {
+    return <div className='app'>
       <Header />
       <Search />
-      <List />
+      <List posts={this.data}/>
       <AddForm />
-    </>
-  );
+    </div>
+  }
 }
-
-export default App;

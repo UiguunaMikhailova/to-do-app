@@ -1,0 +1,50 @@
+.filter-input {
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.filter-label {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 50px;
+	height: 25px;
+	background: grey;
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}
+
+.filter-label:after {
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+.filter-input:checked + .filter-label {
+	background: #bada55;
+}
+
+.filter-input:checked + .filter-label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+.filter-label:active:after {
+	width: 50px;
+}
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.filter-text {
+    margin-bottom: 2px;
+}

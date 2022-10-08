@@ -9,6 +9,10 @@
   font-size: 17px;
   border: none;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
 }
 .app-list-item button:focus {
     box-shadow: none;
@@ -51,4 +55,13 @@
 
 .app-list-item.important .btn-star {
     color: #aeaeae;
+}
+.star {
+  width: 25px;
+}
+.trash {
+  width: 25px;
+}
+.done {
+  width: 25px;
 }
