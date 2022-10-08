@@ -10,7 +10,8 @@
   font-size: 26px;
 }
 
-.app-header h2 {
+.app-header h5 {
   font-size: 1.2rem;
-  color: grey;
+  color: rgb(72, 72, 72);
+  margin-left: 15px;
 }
