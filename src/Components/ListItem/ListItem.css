@@ -1,5 +1,6 @@
 .app-list-item {
   font-size: 1.25rem;
+  justify-content: space-between;
 }
 
 .app-list-item button {
@@ -53,8 +54,8 @@
   color: #FFD700;
 }
 
-.app-list-item.important .btn-star {
-    color: #aeaeae;
+.app-list-item.doned .app-list-item-label {
+  text-decoration: line-through;
 }
 .star {
   width: 25px;

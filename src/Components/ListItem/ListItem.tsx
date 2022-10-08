@@ -19,13 +19,15 @@ export default class ListItem extends Component<ListItemProps> {
   //   }))
   // }
   render() {
-    const { label, important, onDelete, onToggleDone, onToggleImportant } =
-      this.props;
-    let classNames = "app-list-item d-flex justify-content-between";
+    const { label, important, done, onDelete, onToggleDone, onToggleImportant } = this.props;
+    let classNames = "app-list-item d-flex";
     let img = "https://img.icons8.com/color/48/000000/star.png";
     if (important) {
       classNames += " important";
       img = "https://img.icons8.com/windows/25/000000/star--v1.png";
+    }
+    if (done) {
+      classNames += " doned";
     }
     return (
       <div className={classNames}>

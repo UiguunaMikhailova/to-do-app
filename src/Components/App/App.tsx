@@ -57,15 +57,35 @@ export default class App extends Component<{}, AppProps> {
     })
   }
   onToggleDone(id: number) {
-    console.log(id)
+    this.setState(({ data }) => {
+      const index = data.findIndex((task) => task.id === id)
+      const item = data[index]
+      const newItem = {...item, done: !item.done}
+      const newArr = [...data.slice(0, index), newItem, ...data.slice(index + 1)]
+      return {
+        data: newArr
+      }
+    })
   }
   onToggleImportant(id: number) {
-    console.log(id)
+    this.setState(({ data }) => {
+      const index = data.findIndex((task) => task.id === id)
+      const item = data[index]
+      const newItem = {...item, important: !item.important}
+      const newArr = [...data.slice(0, index), newItem, ...data.slice(index + 1)]
+      return {
+        data: newArr
+      }
+    })
   }
   render() {
-    console.log(this.state.data)
+    const donedTasksCount = this.state.data.filter((item) => item.done).length;
+    const allTasksCount = this.state.data.length;
     return <div className='app'>
-      <Header />
+      <Header
+        donedTasks={donedTasksCount}
+        allTasks={allTasksCount}
+      />
       <Search />
       <List
         posts={this.state.data}
