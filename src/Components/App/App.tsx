@@ -28,7 +28,7 @@ export default class App extends Component<{}, AppProps> {
   state: AppProps = {
     data: [
       { id: 1, label: 'first Task', important: false, done: false },
-      { id: 2, label: 'second Task', important: true, done: false },
+      { id: 2, label: 'second Task', important: false, done: false },
       { id: 3, label: 'third Task', important: false, done: false },
     ]
   }
@@ -79,11 +79,11 @@ export default class App extends Component<{}, AppProps> {
     })
   }
   render() {
-    const donedTasksCount = this.state.data.filter((item) => item.done).length;
+    const completedTasksCount = this.state.data.filter((item) => item.done).length;
     const allTasksCount = this.state.data.length;
     return <div className='app'>
       <Header
-        donedTasks={donedTasksCount}
+        donedTasks={completedTasksCount}
         allTasks={allTasksCount}
       />
       <Search />

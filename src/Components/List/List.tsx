@@ -29,7 +29,6 @@ export default class List extends Component<ListProps> {
     return (
       <ul className="app-list list-group">
         {this.props.posts.map((item) => {
-          console.log(this.props.posts)
           return (
             <li key={item.id} className="list-group-item">
               <ListItem

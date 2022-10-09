@@ -54,7 +54,7 @@
   color: #FFD700;
 }
 
-.app-list-item.doned .app-list-item-label {
+.app-list-item.completed .app-list-item-label {
   text-decoration: line-through;
 }
 .star {

@@ -9,25 +9,20 @@ type ListItemProps = {
   onToggleDone: () => void,
   onToggleImportant: () => void
 };
+
 export default class ListItem extends Component<ListItemProps> {
-  // state: Omit<ListItemProps, 'onToggleDone' | 'onDelete'> = {
-  //   important: false
-  // }
-  // onImportant() {
-  //   this.setState(() => ({
-  //     important: !this.state.important
-  //   }))
-  // }
   render() {
     const { label, important, done, onDelete, onToggleDone, onToggleImportant } = this.props;
     let classNames = "app-list-item d-flex";
     let img = "https://img.icons8.com/color/48/000000/star.png";
+    let imgDone = "https://img.icons8.com/color/48/000000/checkmark.png";
     if (important) {
       classNames += " important";
       img = "https://img.icons8.com/windows/25/000000/star--v1.png";
     }
     if (done) {
-      classNames += " doned";
+      classNames += " completed";
+      imgDone = "https://img.icons8.com/windows/25/000000/checkmark--v1.png";
     }
     return (
       <div className={classNames}>
@@ -39,7 +34,7 @@ export default class ListItem extends Component<ListItemProps> {
             onClick={onToggleDone}
           >
             <img
-              src="https://img.icons8.com/color/48/000000/checkmark.png"
+              src={imgDone}
               alt="done"
               className="done"
             />
