@@ -12,7 +12,10 @@ type ListItemProps = {
   done: boolean
 }
 type AppProps = {
-  data: ListItemProps[]
+  data: ListItemProps[],
+  term: string,
+  onlyImportant: boolean,
+  isChecked: boolean
 }
 
 export default class App extends Component<{}, AppProps> {
@@ -23,6 +26,7 @@ export default class App extends Component<{}, AppProps> {
     this.addItem = this.addItem.bind(this)
     this.onToggleDone = this.onToggleDone.bind(this)
     this.onToggleImportant = this.onToggleImportant.bind(this)
+    this.onUpdateSearch = this.onUpdateSearch.bind(this)
     this.maxId = 4
   }
   state: AppProps = {
@@ -30,7 +34,10 @@ export default class App extends Component<{}, AppProps> {
       { id: 1, label: 'first Task', important: false, done: false },
       { id: 2, label: 'second Task', important: false, done: false },
       { id: 3, label: 'third Task', important: false, done: false },
-    ]
+    ],
+    term: '',
+    onlyImportant: false,
+    isChecked: false
   }
   deleteItem(id: number) {
     this.setState(() => {
@@ -78,7 +85,25 @@ export default class App extends Component<{}, AppProps> {
       }
     })
   }
+  searchPost(items: ListItemProps[], term: string) {
+    if (term.length === 0) return items
+    return items.filter((item) => {
+      return item.label.toLowerCase().includes(term.toLowerCase())
+    })
+  }
+  filterPosts(items: ListItemProps[], isChecked: boolean) {
+    if (isChecked) return items.filter((item) => item.important === true)
+    return items
+  }
+  onUpdateSearch(term: string) {
+    this.setState({term})
+  }
+  onUpdateFilter(isChecked: boolean) {
+    this.setState({ isChecked })
+  }
   render() {
+    const filteredPosts = this.filterPosts(this.state.data, this.state.isChecked)
+    const visiblePosts = this.searchPost(filteredPosts, this.state.term)
     const completedTasksCount = this.state.data.filter((item) => item.done).length;
     const allTasksCount = this.state.data.length;
     return <div className='app'>
@@ -86,9 +111,11 @@ export default class App extends Component<{}, AppProps> {
         donedTasks={completedTasksCount}
         allTasks={allTasksCount}
       />
-      <Search />
+      <Search 
+        onUpdateSearch={(term) => this.onUpdateSearch(term)}
+        onUpdateFilter={(isChecked) => this.onUpdateFilter(isChecked)}/>
       <List
-        posts={this.state.data}
+        posts={visiblePosts}
         onDelete={this.deleteItem}
         onToggleDone={this.onToggleDone}
         onToggleImportant={this.onToggleImportant}
